@@ -7,8 +7,9 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
+import json
 
 app = Flask(__name__)
 
@@ -45,9 +46,30 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+    text = event.message.text
+    check = text[:3]
+
+    if check == "bot":
+
+        if text == "bot Hi" or text == "bot hi":
+            message = TextSendMessage('Hello')
+
+        if text == "bot help":
+            with open("command.txt", mode='r', encoding="utf-8") as file:
+                data = file.read()
+            message = TextSendMessage(data)
+
+        elif text == "bot 課表":
+            message = ImageSendMessage(
+                original_content_url='https://i.imgur.com/jbAn2m4.jpg',
+                preview_image_url='https://i.imgur.com/jbAn2m4.jpg')
+
+        else:
+            message = TextSendMessage('未知指令\nbot help可查詢指令')
+
+
+        line_bot_api.reply_message(event.reply_token, message)
+
 
 
 if __name__ == "__main__":
