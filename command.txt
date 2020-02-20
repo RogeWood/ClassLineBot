@@ -4,3 +4,6 @@ bot help --查詢指令
 bot 課表 --查課表
 bot 今天課表 --查今天課表
 bot 下節課/bot next --查下節課
+
+#其他
+bot time --查時間(很沒用)

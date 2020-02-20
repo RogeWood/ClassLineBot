@@ -9,7 +9,14 @@ def help():
 
 
 def today_lesson():
+    now = datetime.now()
     todayOfWeek = datetime.now().weekday()+1
+    if now.hour+8 > 24:
+        if todayOfWeek == 7:
+            todayOfWeek = 1
+        else:
+            todayOfWeek += 1
+
     reply = "\n"
     if todayOfWeek == 6 or todayOfWeek == 7:
         reply = '今天沒有上課'
@@ -27,12 +34,13 @@ def today_lesson():
 def next_lesson():
     todayOfWeek = datetime.now().weekday()+1
     now = datetime.now()
-    nextLesson = now.hour-6 if now.hour<13 else now.hour-7
+    hour = now.hour+8
+    nextLesson = hour-6 if hour<13 else hour-7
 
     if todayOfWeek == 6 or todayOfWeek == 7:
         reply = '今天沒有上課'
     else:
-        if nextLesson > 8:
+        if nextLesson > 8 or nextLesson < 1:
             reply = '沒有課了'
         else:
             with open("curriculum.json", mode='r', encoding="utf-8") as file:
