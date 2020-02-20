@@ -9,7 +9,8 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
-import json
+import json,command
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -54,15 +55,20 @@ def handle_message(event):
         if text == "bot Hi" or text == "bot hi":
             message = TextSendMessage('Hello')
 
-        if text == "bot help":
-            with open("command.txt", mode='r', encoding="utf-8") as file:
-                data = file.read()
-            message = TextSendMessage(data)
-
         elif text == "bot 課表":
             message = ImageSendMessage(
                 original_content_url='https://i.imgur.com/jbAn2m4.jpg',
                 preview_image_url='https://i.imgur.com/jbAn2m4.jpg')
+
+        #elif text == "bot 下節課" or "bot next":
+
+        elif text == "bot 今天課表":
+            reply = command.today_lesson()
+            message = TextSendMessage(reply)
+
+        elif text == "bot help":
+            reply = command.help()
+            message = TextSendMessage(reply)
 
         else:
             message = TextSendMessage('未知指令\nbot help可查詢指令')
