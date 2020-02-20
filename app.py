@@ -10,7 +10,6 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
 import json,command
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -60,8 +59,6 @@ def handle_message(event):
                 original_content_url='https://i.imgur.com/jbAn2m4.jpg',
                 preview_image_url='https://i.imgur.com/jbAn2m4.jpg')
 
-        #elif text == "bot 下節課" or "bot next":
-
         elif text == "bot 今天課表":
             reply = command.today_lesson()
             message = TextSendMessage(reply)
@@ -70,6 +67,9 @@ def handle_message(event):
             reply = command.help()
             message = TextSendMessage(reply)
 
+        elif text == "bot 下節課" or "bot next":
+            reply = command.next_lesson()
+            message = TextSendMessage(reply)
         else:
             message = TextSendMessage('未知指令\nbot help可查詢指令')
 
