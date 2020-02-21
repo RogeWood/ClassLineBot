@@ -9,8 +9,7 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
-import json,command
-from datetime import datetime
+import json, Reply
 
 app = Flask(__name__)
 
@@ -52,33 +51,14 @@ def handle_message(event):
 
     if check == "bot":
 
-        if text == "bot Hi" or text == "bot hi":
-            message = TextSendMessage('Hello')
-
-        elif text == "bot 課表":
+        if text == "bot 課表":
             message = ImageSendMessage(
                 original_content_url='https://i.imgur.com/jbAn2m4.jpg',
                 preview_image_url='https://i.imgur.com/jbAn2m4.jpg')
 
-        elif text == "bot 今天課表":
-            reply = command.today_lesson()
+        else: #回傳文字
+            reply = Reply.reply_Text_Message(text)
             message = TextSendMessage(reply)
-
-        elif text == "bot help":
-            reply = command.help()
-            message = TextSendMessage(reply)
-
-        elif text == "bot 下節課" or text == "bot next":
-            reply = command.next_lesson()
-            message = TextSendMessage(reply)
-
-        elif text == "bot time":
-            time = datetime.now()
-            reply = str(time.hour+8) + ':'+str(time.minute)
-            message = TextSendMessage(reply)
-
-        else:
-            message = TextSendMessage('未知指令\nbot help可查詢指令')
 
 
         line_bot_api.reply_message(event.reply_token, message)

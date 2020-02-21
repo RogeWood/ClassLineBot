@@ -5,5 +5,11 @@ bot 課表 --查課表
 bot 今天課表 --查今天課表
 bot 下節課/bot next --查下節課
 
+#作業
+bot hw --顯示作業
+bot hw add (作業內容) --加入作業
+bot hw rm --移除最前面的作業
+bot hw rm all --刪除全部作業
+
 #其他
 bot time --查時間(很沒用)
