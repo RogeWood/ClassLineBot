@@ -49,15 +49,16 @@ def handle_message(event):
     text = event.message.text
     check = text[:3]
 
-    if check == "bot":
+    if check == "bot" or check == "Bot":
+        handle_text = text[4:]
 
-        if text == "bot 課表":
+        if handle_text == "課表":
             message = ImageSendMessage(
                 original_content_url='https://i.imgur.com/jbAn2m4.jpg',
                 preview_image_url='https://i.imgur.com/jbAn2m4.jpg')
 
         else: #回傳文字
-            reply = Reply.reply_Text_Message(text)
+            reply = Reply.reply_Text_Message(handle_text)
             message = TextSendMessage(reply)
 
 

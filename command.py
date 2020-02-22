@@ -49,15 +49,15 @@ def next_lesson():
                 data = json.load(file)
             reply = data[str(todayOfWeek)][str(nextLesson)]
 
-    return '['+reply+']'
+    return reply
 
 
 ## 作業
 def add_homework(homework):
     with open("homework.txt", mode='a', encoding="utf-8") as file:
-        file.write('\n'+homework)
+        file.write(homework+'\n')
 
-    return '[作業已增加]'
+    return '['+homework+'已加入作業]'
 
 
 def print_homework():
@@ -67,22 +67,26 @@ def print_homework():
     return data
 
 
-def remove_homework():
+def remove_homework(homework):
     data = ''
+    finded = False
     with open("homework.txt", mode='r', encoding="utf-8") as file:
         n=0
         for line in file:
-            n +=1
-            if n == 1:
+            n += 1
+            if n == int(homework):
+                finded = True
                 reply = line
             else:
                 data += line
 
-    with open("homework.txt", mode='w', encoding="utf-8") as file:
-        file.write(data)
-
-    return '['+reply+'已移除]'
+    if finded:
+        with open("homework.txt", mode='w', encoding="utf-8") as file:
+            file.write(data)
+        return '['+reply+'已移除]'
+    else:
+        return '[沒有此作業]'
 
 def remove_all_homework():
     remove("homework.txt")
-    return '[已清空]'
+    return '[作業已清空]'
