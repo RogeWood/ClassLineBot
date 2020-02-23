@@ -1,11 +1,12 @@
 import command
+from datetime import datetime
 
 def reply_Text_Message(text):
 
     if text == "Hi" or text == "hi":
         reply = 'Hello'
 
-    elif text == "今天課表":
+    elif text == "今天課表" or text == "today":
         reply = command.today_lesson()
 
     elif text == "help":
@@ -16,7 +17,7 @@ def reply_Text_Message(text):
 
     elif text == "time":
         time = datetime.now()
-        reply = str(time.hour+8) + ':'+str(time.minute)
+        reply = f'{time.month}/{time.day} {(time.hour+8)%24} : {time.minute}'
 
     elif "hw" in text:
         if 'rm' in text:
@@ -36,6 +37,27 @@ def reply_Text_Message(text):
                 reply = command.add_homework(HW)
         elif text == "hw" or text == "hw ":
             reply = command.print_homework()
+
+
+    elif 'class' in text:
+        '''
+        if 'rm' in text:
+            #HW = text[6:]
+            if text == "class rm all":
+                pass
+            elif HW == ' ' or HW == '':
+                pass
+            else:
+                pass
+            '''
+
+        if "add" in text:
+            CL = text[10:]
+            reply = command.add_transClass(CL)
+
+        elif text == "class" or text == "class ":
+            reply = command.print_transClass()
+
 
     else:
         reply = '未知指令\n[bot help可查詢指令]'

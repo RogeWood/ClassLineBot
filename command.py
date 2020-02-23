@@ -1,6 +1,5 @@
 import json
 from os import remove
-from datetime import datetime
 
 def help():
     with open("command.txt", mode='r', encoding="utf-8") as file:
@@ -57,15 +56,14 @@ def add_homework(homework):
     with open("homework.txt", mode='a', encoding="utf-8") as file:
         file.write(homework+'\n')
 
-    return '['+homework+'已加入作業]'
+    return f'[{homework}已加入作業]'
 
 
 def print_homework():
     with open("homework.txt", mode='r', encoding="utf-8") as file:
         data = file.read()
 
-    return data
-
+    return f'```\n{data}```'
 
 def remove_homework(homework):
     data = ''
@@ -90,3 +88,41 @@ def remove_homework(homework):
 def remove_all_homework():
     remove("homework.txt")
     return '[作業已清空]'
+
+
+##調課
+def add_transClass(CL):
+    #12/13 化學 1/13 國文
+    List = CL.split(' ',3)
+    data = {List[0]: List[1], List[2]: List[3]}
+
+    with open("transClass.json",mode='r', encoding="utf-8") as file:
+        get = json.load(file)
+
+    get.update(data)
+
+    with open("transClass.json",mode='w', encoding="utf-8") as file:
+        json.dump(get,file)
+
+    return f'[{CL} 已加入]'
+
+def print_transClass():
+
+    with open("transClass.json",mode='r', encoding="utf-8") as file:
+        data = json.load(file)
+
+    l = True
+    line = 0
+    reply = ''
+    for key, value in data.items():
+        line+=1
+        if line<3:
+            continue
+        if l == True:
+            reply += f'{key} {value} 與 '
+            l = False
+        else:
+            reply += f'{key} {value} 調課\n'
+            l = True
+
+    return reply
