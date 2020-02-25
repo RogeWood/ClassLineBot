@@ -16,7 +16,5 @@ bot hw rm all --刪除全部作業
 #調課
 bot class --顯示調課
 bot class add (月/日) (科目) (月/日) (科目) --加入
-
-#其他
-bot time --查時間(很沒用)
+bot class rm --刪除全部調課
 ```

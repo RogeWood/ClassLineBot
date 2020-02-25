@@ -1,5 +1,6 @@
 import json
 from os import remove
+from datetime import datetime
 
 def help():
     with open("command.txt", mode='r', encoding="utf-8") as file:
@@ -9,7 +10,7 @@ def help():
 
 
 ## 課堂
-def today_lesson():
+def today():
     now = datetime.now()
     todayOfWeek = datetime.now().weekday()+1
     if now.hour+8 > 24:
@@ -18,16 +19,16 @@ def today_lesson():
         else:
             todayOfWeek += 1
 
-    reply = ""
+    reply = f'{now.month}/{now.day} {(now.hour+8)%24}:{now.minute}'
     if todayOfWeek == 6 or todayOfWeek == 7:
-        reply = '[今天沒有上課]'
+        reply += '[今天沒有上課]'
     else:
         with open("curriculum.json", mode='r', encoding="utf-8") as file:
             data = json.load(file)
         lesson = '\n'
         for i in range(1,9):
             lesson = lesson+ str(i)+' '+ data[str(todayOfWeek)][str(i)]+'\n'
-        reply = lesson
+        reply += lesson
 
     return reply
 
@@ -81,7 +82,7 @@ def remove_homework(homework):
     if finded:
         with open("homework.txt", mode='w', encoding="utf-8") as file:
             file.write(data)
-        return '['+reply+'已移除]'
+        return f'[{reply}已移除]'
     else:
         return '[沒有此作業]'
 
@@ -126,3 +127,10 @@ def print_transClass():
             l = True
 
     return reply
+
+def remove_all_transClass():
+    remove("transClass.json")
+    data = {"test": "test", "Test": "test"}
+    with open("transClass.json",mode='w', encoding="utf-8") as file:
+        json.dump(data, file)
+    return '[調課已清空]'

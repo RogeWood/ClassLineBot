@@ -1,5 +1,4 @@
 import command
-from datetime import datetime
 
 def reply_Text_Message(text):
 
@@ -7,17 +6,13 @@ def reply_Text_Message(text):
         reply = 'Hello'
 
     elif text == "今天課表" or text == "today":
-        reply = command.today_lesson()
+        reply = command.today()
 
     elif text == "help":
         reply = command.help()
 
     elif text == "下節課" or text == "next":
         reply = command.next_lesson()
-
-    elif text == "time":
-        time = datetime.now()
-        reply = f'{time.month}/{time.day} {(time.hour+8)%24} : {time.minute}'
 
     elif "hw" in text:
         if 'rm' in text:
@@ -40,18 +35,11 @@ def reply_Text_Message(text):
 
 
     elif 'class' in text:
-        '''
-        if 'rm' in text:
-            #HW = text[6:]
-            if text == "class rm all":
-                pass
-            elif HW == ' ' or HW == '':
-                pass
-            else:
-                pass
-            '''
 
-        if "add" in text:
+        if text == "class rm":
+            reply = command.remove_all_transClass()
+
+        elif "add" in text:
             CL = text[10:]
             reply = command.add_transClass(CL)
 
