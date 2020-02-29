@@ -47,6 +47,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
+
     check = text[:3]
 
     if check == "bot" or check == "Bot":
@@ -62,7 +63,7 @@ def handle_message(event):
             message = TextSendMessage(reply)
 
 
-        line_bot_api.reply_message(event.reply_token, message)
+    line_bot_api.reply_message(event.reply_token, message)
 
 
 

@@ -33,7 +33,6 @@ def reply_Text_Message(text):
         elif text == "hw" or text == "hw ":
             reply = command.print_homework()
 
-
     elif 'class' in text:
 
         if text == "class rm":
@@ -45,7 +44,6 @@ def reply_Text_Message(text):
 
         elif text == "class" or text == "class ":
             reply = command.print_transClass()
-
 
     else:
         reply = '未知指令\n[bot help可查詢指令]'

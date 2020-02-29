@@ -1,6 +1,7 @@
 import json
 from os import remove
 from datetime import datetime
+import google_sheet
 
 def help():
     with open("command.txt", mode='r', encoding="utf-8") as file:
@@ -13,7 +14,7 @@ def help():
 def today():
     now = datetime.now()
     todayOfWeek = datetime.now().weekday()+1
-    if now.hour+8 > 24:
+    if now.hour+8 >= 24:
         if todayOfWeek == 7:
             todayOfWeek = 1
         else:
@@ -51,14 +52,10 @@ def next_lesson():
 
     return reply
 
-
 ## 作業
 def add_homework(homework):
-    with open("homework.txt", mode='a', encoding="utf-8") as file:
-        file.write(homework+'\n')
-
+    google_sheet.add_homework_value(homework)
     return f'[{homework}已加入作業]'
-
 
 def print_homework():
     with open("homework.txt", mode='r', encoding="utf-8") as file:
@@ -89,7 +86,6 @@ def remove_homework(homework):
 def remove_all_homework():
     remove("homework.txt")
     return '[作業已清空]'
-
 
 ##調課
 def add_transClass(CL):
