@@ -5,8 +5,11 @@
 
 ## 製作
 Programming language: python
+
 Server: heroku
+
 Database: google sheet(類數據庫)
+
 
 **註**: heroku不會儲存檔案，檔案必須存在數據庫上
 
