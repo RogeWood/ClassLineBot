@@ -13,6 +13,9 @@ import json, Reply
 
 app = Flask(__name__)
 
+#webhook
+#https://class-bot123.herokuapp.com/callback
+
 #Channel secret
 line_bot_api = LineBotApi('YMvWMbuo2BxWlEqgda3ObZVz1l5DtTAOFGiiGFg0XCJ1pN2lGBz8koNWNaykUwYAPfHvxq46L5fGmzfqthOuv1Ix8JB6iRZj0kEynIHdTKfbyJWTnggeUBn5VUfqgF5mwWOXO3w6CZdJgv911mdmjwdB04t89/1O/w1cDnyilFU=')
 #token

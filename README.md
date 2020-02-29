@@ -1,7 +1,15 @@
 # Class Line Line
 
-班群上的機器人 
- (小弟練python中，技術不足請見諒 <(_ _)> )
+班群上的機器人
+ (小弟練python中，技術不足請見諒 )
+
+## 製作
+Programming language: python
+Server: heroku
+Database: google sheet(類數據庫)
+
+**註**: heroku不會儲存檔案，檔案必須存在數據庫上
+
 
 ## 功能
 
@@ -13,7 +21,7 @@
     1. 紀錄作業
     2. 刪除作業
     3. 顯示作業
-- 調課(待加中)
+- 調課
     1. 紀錄調課
     2. 顯示調課
     3. 刪除調課
