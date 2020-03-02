@@ -1,19 +1,28 @@
 ```
-bot help --查詢指令
-
-#課程
+bot help all --全部指令
+bot help hw/bot help 作業 --作業指令
+bot help test/bot help 考試 --考試指令
+bot help class/bot help 課程 --課程指令
+---
+#課程 class
 bot 課表 --查課表
 bot 今天課表/bot today --查今天課表
 bot 下節課/bot next --查下節課
 
-#作業
+#調課
+bot tc --顯示調課
+bot tc add (月/日) (科目) (月/日) (科目) --加入調課
+bot tc rm --刪除全部調課
+---
+#作業 hw
 bot hw --顯示作業
 bot hw add (作業內容) --加入作業
 bot hw rm (數字) --移除第n個作業
 bot hw rm all --刪除全部作業
-
-#調課
-bot class --顯示調課
-bot class add (月/日) (科目) (月/日) (科目) --加入
-bot class rm --刪除全部調課
+---
+#考試 test
+bot test add (作業內容) --加入作業
+bot test rm (數字) --移除第n個作業
+bot test rm all --刪除全部作業
+---
 ```

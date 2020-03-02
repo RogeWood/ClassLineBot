@@ -8,11 +8,13 @@ def reply_Text_Message(text):
     elif text == "今天課表" or text == "today":
         reply = command.today()
 
-    elif text == "help":
-        reply = command.help()
 
     elif text == "下節課" or text == "next":
         reply = command.next_lesson()
+
+    elif "help" in text:
+        decision = text[5:]
+        reply = command.help(decision)
 
     elif "hw" in text:
         if 'rm' in text:
@@ -33,16 +35,16 @@ def reply_Text_Message(text):
         elif text == "hw" or text == "hw ":
             reply = command.print_homework()
 
-    elif 'class' in text:
+    elif 'tc' in text:
 
-        if text == "class rm":
+        if text == "tc rm":
             reply = command.remove_all_transClass()
 
         elif "add" in text:
             CL = text[10:]
             reply = command.add_transClass(CL)
 
-        elif text == "class" or text == "class ":
+        elif text == "tc" or text == "tc ":
             reply = command.print_transClass()
 
     elif "test" in text:

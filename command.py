@@ -5,10 +5,29 @@ from database.google_sheet import google_sheet
 
 sheet = google_sheet()
 
-def help():
+def help(decision):
+    data = ''
+
     with open("database/command.txt", mode='r', encoding="utf-8") as file:
-        data = file.read()
-    return data
+        if decision == "":
+            for line in file:
+                if line == "---\n":
+                    break
+                data += line
+            reply = data+'```'
+
+        else:
+            copy = 0
+            for line in file:
+                if decision in line:
+                    copy += 1
+                if copy > 1:
+                    if line == "---\n":
+                        reply = f'```\n{data}```'
+                        break
+                    data+=line
+
+    return reply
 
 
 ## 課堂
