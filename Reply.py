@@ -20,7 +20,7 @@ def reply_Text_Message(text):
             if text == "hw rm all":
                 reply = command.remove_all_homework()
             elif HW == ' ' or HW == '':
-                reply = command.remove_homework('1')
+                reply = '[未輸入刪除行號]'
             else:
                 reply = command.remove_homework(HW)
 
@@ -44,6 +44,25 @@ def reply_Text_Message(text):
 
         elif text == "class" or text == "class ":
             reply = command.print_transClass()
+
+    elif "test" in text:
+        if 'rm' in text:
+            Test = text[8:]
+            if text == "test rm all":
+                reply = command.remove_all_test()
+            elif Test == ' ' or Test == '':
+                reply = '[未輸入刪除行號]'
+            else:
+                reply = command.remove_test(Test)
+
+        elif "add" in text:
+            Test = text[9:]
+            if Test == '' or Test == ' ':
+                reply = '未輸入考試\n[bot test add (日期) (考試)]'
+            else:
+                reply = command.add_test(Test)
+        elif text == "test" or text == "test ":
+            reply = command.print_test()
 
     else:
         reply = '未知指令\n[bot help可查詢指令]'
