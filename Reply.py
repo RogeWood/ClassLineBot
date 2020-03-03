@@ -41,7 +41,7 @@ def reply_Text_Message(text):
             reply = command.remove_all_transClass()
 
         elif "add" in text:
-            CL = text[10:]
+            CL = text[7:]
             reply = command.add_transClass(CL)
 
         elif text == "tc" or text == "tc ":

@@ -50,6 +50,33 @@ def today():
         for i in range(1,9):
             lesson = lesson+ str(i)+' '+ data[str(todayOfWeek)][str(i)]+'\n'
         reply += lesson
+
+        day1 = sheet.worksheet.col_values(2)
+        class1 = sheet.worksheet.col_values(3)
+        len = sheet.find_data_len(2)+1
+        index = 2
+        while index < len:
+            cell = sheet.worksheet.acell(f'B{index}').value
+            time = cell.split('/')
+            if now.day == int(time[1]) and now.month == int(time[0]):
+                reply += f'{day1[index-1]} 考{class1[index-1]}\n'
+            index+=1
+
+        day1 = sheet.worksheet.col_values(4)
+        class1 = sheet.worksheet.col_values(5)
+        day2 = sheet.worksheet.col_values(6)
+        class2 = sheet.worksheet.col_values(7)
+        index = 2
+        len = sheet.find_data_len(4)+1
+        while index < len:
+            cell1 = sheet.worksheet.acell(f'D{index}').value
+            cell2 = sheet.worksheet.acell(f'F{index}').value
+            time1 = cell1.split('/')
+            time2 = cell2.split('/')
+            if (now.day == int(time1[1]) and now.month == int(time1[0])) or (now.day == int(time2[1]) and now.month == int(time2[0])):
+                reply += f'{day1[index-1]} {class1[index-1]}與{day2[index-1]} {class2[index-1]} 調課\n'
+            index+=1
+
     return reply
 
 
@@ -113,10 +140,8 @@ def remove_all_homework():
 def add_transClass(CL):
     Clist = CL.split(' ',3)
     index = sheet.find_data_len(4)+1
-    sheet.worksheet.update_acell(f'D{index}',Clist[0])
-    sheet.worksheet.update_acell(f'E{index}',Clist[1])
-    sheet.worksheet.update_acell(f'F{index}',Clist[2])
-    sheet.worksheet.update_acell(f'G{index}',Clist[3])
+    for i in range(4):
+        sheet.worksheet.update_cell(index, i+4,Clist[i])
     return f'[{CL} 已加入]'
 
 def print_transClass():
@@ -140,10 +165,8 @@ def remove_all_transClass():
     index = 0
     while index < len:
         if index != 0:
-            sheet.worksheet.update_acell(f'D{index+1}','')
-            sheet.worksheet.update_acell(f'E{index+1}','')
-            sheet.worksheet.update_acell(f'F{index+1}','')
-            sheet.worksheet.update_acell(f'G{index+1}','')
+            for i in range(4):
+                sheet.worksheet.update_cell(index+1, i+4,'')
         index += 1
     return '[調課已清空]'
 
