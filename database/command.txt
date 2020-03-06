@@ -1,4 +1,3 @@
-```
 bot help all --全部指令
 bot help hw/bot help 作業 --作業指令
 bot help test/bot help 考試 --考試指令
@@ -25,4 +24,3 @@ bot test add (作業內容) --加入作業
 bot test rm (數字) --移除第n個作業
 bot test rm all --刪除全部作業
 ---
-```

@@ -14,8 +14,10 @@ def help(decision):
                 if line == "---\n":
                     break
                 data += line
-            reply = data+'```'
 
+        elif decision == "all":
+            for line in file:
+                data += line
         else:
             copy = 0
             for line in file:
@@ -23,10 +25,9 @@ def help(decision):
                     copy += 1
                 if copy > 1:
                     if line == "---\n":
-                        reply = f'```\n{data}```'
                         break
                     data+=line
-
+    reply = f'```\n{data}```'
     return reply
 
 
@@ -59,7 +60,7 @@ def today():
             cell = sheet.worksheet.acell(f'B{index}').value
             time = cell.split('/')
             if now.day == int(time[1]) and now.month == int(time[0]):
-                reply += f'{day1[index-1]} 考{class1[index-1]}\n'
+                reply += f'考{class1[index-1]}\n'
             index+=1
 
         day1 = sheet.worksheet.col_values(4)
