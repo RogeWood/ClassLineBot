@@ -195,7 +195,7 @@ def print_test():
 
 def remove_test(test):
     index = int(test)
-    len = sheet.find_data_len(1)+1
+    len = sheet.find_data_len(2)+1
 
     index+=1
     reply = sheet.worksheet.acell(f'B{index}').value + ' ' + sheet.worksheet.acell(f'C{index}').value
