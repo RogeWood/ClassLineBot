@@ -1,4 +1,4 @@
-# Class Line Line
+# Class Line Bot
 
 班群上的機器人
  (小弟練python中，技術不足請見諒 )
