@@ -1,2 +1,4 @@
-# ignore python exe
 __pycache__
+.env
+test.py
+client_serect.json

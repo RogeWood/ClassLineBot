@@ -1,9 +1,8 @@
 # Class Line Bot
 
 班群上的機器人
- (小弟練python中，技術不足請見諒 )
 
-## 製作
+## Devlop Environment
 Programming language: python
 
 Server: heroku
@@ -14,7 +13,7 @@ Database: google sheet(類數據庫)
 **註**: heroku不會儲存檔案，檔案必須存在數據庫上
 
 
-## 功能
+## Feature
 
 - 課表
     1. 整周課表

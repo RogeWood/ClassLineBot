@@ -4,7 +4,7 @@ from oauth2client.service_account import ServiceAccountCredentials as SAC
 class google_sheet():
 
     def __init__(self):
-        GDriveJSON = 'database/class-line-bot-269706-ecbdc72edd1e.json'
+        GDriveJSON = 'database/client_serect.json'
         GSpreadSheet = 'BotData'
 
         scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']

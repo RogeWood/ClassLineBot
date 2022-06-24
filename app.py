@@ -9,17 +9,20 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
-import json, Reply
-
+import json, Reply, os
+from dotenv import load_dotenv
 app = Flask(__name__)
 
 #webhook
 #https://class-bot123.herokuapp.com/callback
+# if use ngrok needs to add /callback
 
+# load env
+load_dotenv()
 #Channel secret
-line_bot_api = LineBotApi('YMvWMbuo2BxWlEqgda3ObZVz1l5DtTAOFGiiGFg0XCJ1pN2lGBz8koNWNaykUwYAPfHvxq46L5fGmzfqthOuv1Ix8JB6iRZj0kEynIHdTKfbyJWTnggeUBn5VUfqgF5mwWOXO3w6CZdJgv911mdmjwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(os.getenv("LINE_BOT_API"))
 #token
-handler = WebhookHandler('c946fa7e673733b54133119ad667ee0a')
+handler = WebhookHandler(os.getenv('WEBHOOK_TOKEN'))
 
 
 @app.route("/")
